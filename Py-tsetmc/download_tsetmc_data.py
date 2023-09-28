@@ -2,24 +2,22 @@ import asyncio
 import aiohttp
 from date_conversion import generate_jalali_date_range
 from jdatetime import date, timedelta
-import requests
 import os
 import time
 import concurrent.futures
 import pandas as pd
 
 
-start_date = '1402-06-01'
+start_date = '1401-01-01'
 end_date = date.today().isoformat()
 # Download the datebase
-tic = time.time()
 
 # start_date = (date.today() - timedelta(days=30)).isoformat()  # type: ignore
 # end_date = date.today().isoformat()
 download_dates = generate_jalali_date_range(start_date, end_date)
 
 
-# Download a single traiding day
+# Download a single trading day
 async def download_and_save_tsetmc(jalali_date: str, output_directory="./tsetmcdata"):
     # Define the base URL
     base_url = "https://members.tsetmc.com/tsev2/excel/MarketWatchPlus.aspx?d="
@@ -63,6 +61,7 @@ async def download_and_save_tsetmc(jalali_date: str, output_directory="./tsetmcd
 # Create an event loop and run asynchronous downloads
 
 
+tic = time.time()
 async def main():
     tasks = [download_and_save_tsetmc(date)
              for date in download_dates]
@@ -70,11 +69,6 @@ async def main():
 
 # ------------------------------ generating the download sequence dates--------------#
 # (date.today() - timedelta(days=180)).isoformat()  # type: ignore
-<<<<<<< HEAD
-=======
-start_date = '1402-01-01'
-end_date = date.today().isoformat()
->>>>>>> efbffb527b86a78ed710d40c1f9ff140c4f45e7a
 download_dates = generate_jalali_date_range(start_date, end_date)
 
 tic = time.time()  # For measuring the runtime

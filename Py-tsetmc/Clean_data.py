@@ -30,15 +30,10 @@ def clean_data(date):
 
 
 def clean_combine_data(start_date, end_date):
-<<<<<<< HEAD
-    date_list = generate_jalali_date_range(start_date, end_date)
+    # date_list = generate_jalali_date_range(start_date, end_date)
     date_list = [date.replace("-", "") for date in date_list]
 
     data_dir = list(Path("./tsetmcdata/").glob(f"{date_list}.xlsx"))
-=======
-    date_list=generate_jalali_date_range(start_date, end_date)
-    data_dir = list(Path("./tsetmcdata").glob(f"{date_list}.xlsx"))
->>>>>>> efbffb527b86a78ed710d40c1f9ff140c4f45e7a
 
     all_data = pd.concat([pd.read_excel(f, skiprows=1, header=1)
                           for f in data_dir], ignore_index=True)
@@ -49,11 +44,8 @@ def clean_combine_data(start_date, end_date):
 
 
 clean_combine_data("1401-01-01", "1402-01-01")
-<<<<<<< HEAD
 
 # s, e = ("1401-01-01", "1402-01-01")
 # date_list = generate_jalali_date_range(s, e)
 # date_list=[date.replace("-","") for date in date_list]
 # date_list
-=======
->>>>>>> efbffb527b86a78ed710d40c1f9ff140c4f45e7a
